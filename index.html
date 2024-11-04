@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <style>
+    body {
+      background: black;
+      margin: 0;
+      overflow: hidden;
+    }
+    #root {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      margin: auto;
+      padding: 2.5px;
+      --w: calc(min(100vw, 100vh) - 100px);
+      width: var(--w);
+      height: var(--w);
+      background: rgb(0, 0, 0);
+      background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 1) 0%,
+        rgba(26, 15, 102, 1) 15%,
+        rgba(124, 26, 138, 1) 50%,
+        rgba(95, 14, 96, 1) 85%,
+        rgba(0, 0, 0, 1) 100%
+      );
+      display: grid;
+      grid-template-columns: repeat(10, 10%);
+      grid-template-rows: repeat(10, 10%);
+    }
+    .parent {
+      /* width: 100%; */
+      /* height: 100%; */
+      padding: 2.5px;
+    }
+    .child {
+      width: 100%;
+      height: 100%;
+      background: #000;
+      /* border-radius: 5px; */
+    }
+    #follower {
+      width: 50px;
+      height: 50px;
+      background-color: red;
+      position: absolute;
+      transition: transform 0.5s ease;
+      z-index: 10;
+    }
+  </style>
+  <script>
+    const root = document.getElementById("root");
+
+    function getGridCell() {
+      const par = document.createElement("div");
+      par.className = "parent";
+      const ch = document.createElement("div");
+      ch.className = "child";
+
+      par.appendChild(ch);
+
+      return par;
+    }
+
+    for (let i = 0; i < 100; i++) {
+      root.appendChild(getGridCell());
+    }
+  </script>
+</html>
